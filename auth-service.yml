@@ -25,3 +25,14 @@ springdoc:
   show-actuator: false
   packages-to-scan: com.devtam.authenticate.application.controller
   paths-to-match: /**
+
+eureka:
+  client: 
+    service-url:
+      defaultZone: http://admin:Dev22x22@localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry:  true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 30
