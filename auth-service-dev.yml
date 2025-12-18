@@ -1,0 +1,54 @@
+# ========================================
+# AUTH SERVICE - DEV ENVIRONMENT
+# ========================================
+
+spring:
+  # Database - Dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_db_dev
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  # JPA - Dev
+  jpa: 
+    show-sql: true
+    hibernate: 
+      ddl-auto: update  # Auto-create tables in dev
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Redis - Dev
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+    lettuce:
+      pool:
+        max-active: 10
+
+# JWT Secret - Dev (CHANGE IN PRODUCTION!)
+jwt:
+  secret: dev-secret-key-change-this-in-production-must-be-at-least-256-bits
+
+# OAuth2 - Dev (Optional)
+# spring: 
+#   security:
+#     oauth2:
+#       client: 
+#         registration:
+#           google:
+#             client-id:  ${GOOGLE_CLIENT_ID:}
+#             client-secret: ${GOOGLE_CLIENT_SECRET:}
+
+# Logging - Dev (verbose)
+logging:
+  level:
+    com.devtam. authenticate: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG

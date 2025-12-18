@@ -1,56 +1,33 @@
-# Global configuration cho tất cả services
+# ========================================
+# GLOBAL CONFIGURATION
+# Áp dụng cho TẤT CẢ services
+# ========================================
 
-spring:
-  # JPA common config
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: validate
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
-# Eureka Client common config
+# Eureka Client - Common config
 eureka:
-  client:
-    service-url: 
+  client: 
+    service-url:
       defaultZone: http://admin:Dev22x22@localhost:8761/eureka/
-    register-with-eureka:  true
+    register-with-eureka: true
     fetch-registry: true
-  instance:
-    prefer-ip-address: true
+  instance: 
+    prefer-ip-address:  true
     lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
+    lease-expiration-duration-in-seconds:  90
 
-# Actuator common config
+# Actuator - Common config
 management:
   endpoints: 
     web:
       exposure: 
         include: health,info,metrics,prometheus
   endpoint:
-    health: 
-      show-details: when-authorized
-  metrics:
-    export:
-      prometheus:
-        enabled: true
+    health:
+      show-details:  when-authorized
 
-# Logging common config
+# Logging - Common pattern
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   level:
     root: INFO
-
-# Kafka common config
-spring. kafka:
-  bootstrap-servers:  localhost:9092
-  consumer: 
-    group-id: ${spring.application.name}
-    auto-offset-reset: earliest
-  producer:
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.springframework.kafka.support.serializer. JsonSerializer

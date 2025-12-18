@@ -1,0 +1,16 @@
+# ========================================
+# GLOBAL DEV ENVIRONMENT CONFIGURATION
+# ========================================
+
+# Override cho development
+logging:
+  level:
+    root: DEBUG
+    com.devtam: DEBUG
+    org.springframework: INFO
+
+# Actuator - Show full details in dev
+management:
+  endpoint:
+    health:
+      show-details: always

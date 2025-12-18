@@ -1,53 +1,22 @@
+# ========================================
+# AUTH SERVICE CONFIGURATION (All Environments)
+# ========================================
+
 server:
   port: 8082
   servlet:
     context-path: /auth-service
 
 spring:
-  datasource:
-    url: jdbc: postgresql://localhost:5432/auth_db
-    username: postgres
-    password: ${DB_PASSWORD:postgres}
-    driver-class-name: org. postgresql.Driver
-    hikari:
-      maximum-pool-size: 20
-      minimum-idle: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+  application:
+    name: auth-service
 
-  redis:
-    host: localhost
-    port: 6379
-    password: ${REDIS_PASSWORD:}
-    lettuce:
-      pool:
-        max-active: 10
-        max-idle: 5
-        min-idle: 2
-
-# JWT Configuration
+# JWT Configuration (common)
 jwt:
-  secret:  ${JWT_SECRET:your-256-bit-secret-key-change-this-in-production}
   access-token-expiry: 3600000      # 1 hour
   refresh-token-expiry: 86400000    # 24 hours
-
-# OAuth2 Configuration
-spring.security.oauth2.client:
-  registration:
-    google:
-      client-id: ${GOOGLE_CLIENT_ID: }
-      client-secret: ${GOOGLE_CLIENT_SECRET:}
-      scope:  openid,profile,email
-      redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
-    
-    facebook:
-      client-id: ${FACEBOOK_APP_ID:}
-      client-secret: ${FACEBOOK_APP_SECRET:}
-      scope: email,public_profile
-      redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
 
 # Logging
 logging:
   level: 
-    com.devtam. authenticate: DEBUG
+    com.devtam.authenticate: INFO
